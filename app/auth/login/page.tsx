@@ -68,8 +68,8 @@ export default function LoginPage() {
   return (
     <>
       <Card className="w-[350px] mx-auto mt-20">
-        <CardHeader>
-          <CardTitle>Login Page</CardTitle>
+        <CardHeader className="text-center">
+          <CardTitle className="text-2xl font-bold text-foreground">Login</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -83,7 +83,7 @@ export default function LoginPage() {
                 disabled={isSubmitting}
               />
               {errors.email && (
-                <p className="text-red-500 text-sm">{errors.email.message}</p>
+                <p className="text-destructive text-sm">{errors.email.message}</p>
               )}
             </div>
             
@@ -97,16 +97,16 @@ export default function LoginPage() {
                 disabled={isSubmitting}
               />
               {errors.password && (
-                <p className="text-red-500 text-sm">{errors.password.message}</p>
+                <p className="text-destructive text-sm">{errors.password.message}</p>
               )}
             </div>
             
             {errors.root && (
-              <p className="text-red-500 text-sm">{errors.root.message}</p>
+              <p className="text-destructive text-sm">{errors.root.message}</p>
             )}
             
             {networkError && (
-              <p className="text-red-500 text-sm">{networkError}</p>
+              <p className="text-destructive text-sm">{networkError}</p>
             )}
             
             <Button 
@@ -118,11 +118,11 @@ export default function LoginPage() {
             </Button>
 
             <div className="text-center mt-4">
-              <p className="text-sm text-gray-600">Don't have an account?</p>
+              <p className="text-sm text-muted-foreground">Don't have an account?</p>
               <Button
                 type="button"
                 variant="link"
-                className="text-blue-600 hover:text-blue-800"
+                className="text-primary hover:text-primary/80"
                 onClick={() => router.push("/auth/signup")}
               >
                 Sign up here

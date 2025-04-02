@@ -90,7 +90,7 @@ export default function SignupPage() {
     <>
       <Card className="w-[350px] mx-auto mt-20">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold text-gray-800">Sign Up</CardTitle>
+          <CardTitle className="text-2xl font-bold text-foreground">Sign Up</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -104,7 +104,7 @@ export default function SignupPage() {
                 disabled={isSubmitting}
               />
               {errors.username && (
-                <p className="text-red-500 text-sm">{errors.username.message}</p>
+                <p className="text-destructive text-sm">{errors.username.message}</p>
               )}
             </div>
 
@@ -118,7 +118,7 @@ export default function SignupPage() {
                 disabled={isSubmitting}
               />
               {errors.email && (
-                <p className="text-red-500 text-sm">{errors.email.message}</p>
+                <p className="text-destructive text-sm">{errors.email.message}</p>
               )}
             </div>
 
@@ -143,7 +143,7 @@ export default function SignupPage() {
                 disabled={isSubmitting}
               />
               {errors.password && (
-                <p className="text-red-500 text-sm">{errors.password.message}</p>
+                <p className="text-destructive text-sm">{errors.password.message}</p>
               )}
             </div>
 
@@ -157,7 +157,7 @@ export default function SignupPage() {
                 disabled={isSubmitting}
               />
               {errors.confirmPassword && (
-                <p className="text-red-500 text-sm">{errors.confirmPassword.message}</p>
+                <p className="text-destructive text-sm">{errors.confirmPassword.message}</p>
               )}
             </div>
 
@@ -173,11 +173,11 @@ export default function SignupPage() {
             </div>
             
             {errors.root && (
-              <p className="text-red-500 text-sm">{errors.root.message}</p>
+              <p className="text-destructive text-sm">{errors.root.message}</p>
             )}
             
             {networkError && (
-              <p className="text-red-500 text-sm">{networkError}</p>
+              <p className="text-destructive text-sm">{networkError}</p>
             )}
             
             <Button 
@@ -189,11 +189,11 @@ export default function SignupPage() {
             </Button>
 
             <div className="text-center mt-4">
-              <p className="text-sm text-gray-600">Already have an account?</p>
+              <p className="text-sm text-muted-foreground">Already have an account?</p>
               <Button
                 type="button"
                 variant="link"
-                className="text-blue-600 hover:text-blue-800"
+                className="text-primary hover:text-primary/80"
                 onClick={() => router.push("/auth/login")}
               >
                 Login here

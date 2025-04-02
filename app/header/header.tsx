@@ -64,13 +64,13 @@ export default function Header() {
     <>
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex h-20 items-center justify-between">
+          <div className="flex h-24 items-center justify-between">
             {/* Logo Section */}
             <div className="flex items-center">
               <div className="mr-4 hidden md:flex">
-                <Link href="/" className="flex items-center space-x-3">
-                  <ShoppingBasket className="h-8 w-8 text-primary" />
-                  <span className="hidden text-xl font-bold sm:inline-block">
+                <Link href="/" className="flex items-center space-x-4">
+                  <ShoppingBasket className="h-10 w-10 text-primary" />
+                  <span className="hidden text-2xl font-bold sm:inline-block">
                     Shoppy
                   </span>
                 </Link>
@@ -85,23 +85,23 @@ export default function Header() {
                   size="icon"
                   className="mr-2 px-0 text-base hover:bg-accent hover:text-accent-foreground focus-visible:bg-accent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
                 >
-                  <Menu className="h-6 w-6" />
+                  <Menu className="h-7 w-7" />
                   <span className="sr-only">Toggle Menu</span>
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="w-[300px] sm:w-[400px]">
                 <SheetHeader>
-                  <SheetTitle className="flex items-center space-x-2">
-                    <ShoppingBasket className="h-6 w-6 text-primary" />
-                    <span>Shoppy</span>
+                  <SheetTitle className="flex items-center space-x-3">
+                    <ShoppingBasket className="h-8 w-8 text-primary" />
+                    <span className="text-xl">Shoppy</span>
                   </SheetTitle>
                 </SheetHeader>
-                <nav className="flex flex-col space-y-4 mt-6">
+                <nav className="flex flex-col space-y-4 mt-8">
                   {pages.map((page) => (
                     <Button
                       key={page.title}
                       variant="ghost"
-                      className="w-full justify-start"
+                      className="w-full justify-start text-lg"
                       onClick={() => {
                         setIsOpen(false);
                         router.push(page.path);
@@ -115,7 +115,7 @@ export default function Header() {
             </Sheet>
 
             {/* User Menu and Theme Toggle */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-6">
               <ThemeToggle />
               {isAuthenticated && (
                 <DropdownMenu>
@@ -123,9 +123,9 @@ export default function Header() {
                     <Button 
                       variant="ghost" 
                       size="icon"
-                      className="relative h-10 w-10 rounded-full hover:bg-accent hover:text-accent-foreground"
+                      className="relative h-12 w-12 rounded-full hover:bg-accent hover:text-accent-foreground"
                     >
-                      <Avatar className="h-10 w-10">
+                      <Avatar className="h-12 w-12">
                         {userProfile?.profileImage ? (
                           <AvatarImage 
                             src={getProfileImageUrl(userProfile.profileImage)} 
@@ -136,7 +136,7 @@ export default function Header() {
                             }}
                           />
                         ) : (
-                          <AvatarFallback>
+                          <AvatarFallback className="text-lg">
                             {(userProfile?.name || userProfile?.username || 'U').charAt(0).toUpperCase()}
                           </AvatarFallback>
                         )}
@@ -146,16 +146,16 @@ export default function Header() {
                   <DropdownMenuContent align="end" className="w-56">
                     <DropdownMenuItem 
                       onClick={handleProfileClick}
-                      className="cursor-pointer"
+                      className="cursor-pointer text-base py-2"
                     >
-                      <User className="mr-2 h-4 w-4" />
+                      <User className="mr-2 h-5 w-5" />
                       Profile
                     </DropdownMenuItem>
                     <DropdownMenuItem 
                       onClick={logout}
-                      className="cursor-pointer text-destructive focus:text-destructive"
+                      className="cursor-pointer text-destructive focus:text-destructive text-base py-2"
                     >
-                      <LogOut className="mr-2 h-4 w-4" />
+                      <LogOut className="mr-2 h-5 w-5" />
                       Logout
                     </DropdownMenuItem>
                   </DropdownMenuContent>

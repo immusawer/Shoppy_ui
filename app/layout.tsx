@@ -1,39 +1,42 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { CssBaseline, Container, ThemeProvider } from "@mui/material";
-
+import { Inter } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "sonner";
 import Header from "./header/header";
-import Provider from "./provider";
-import authenticated from "./auth/authenticated";
+import { AuthProvider } from "./auth/auth-context";
+import { ThemeProvider } from "./providers/theme-provider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Shoppy",
-  description: "Shoppy is a shopping website that allows you to buy and sell products",
+  title: "Shoppy - Your Online Store",
+  description: "Shop the latest trends with Shoppy",
 };
 
-export default async function RootLayout(props: { children: React.ReactNode }) {
-  const isAuthenticated = await authenticated();
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en">
-      <body>
-        <>
-          <CssBaseline />
-          <Provider authenticated={isAuthenticated}>
-            <Header />
-            <Container>{props.children}</Container>
-          </Provider>
-        </>
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AuthProvider>
+            <div className="min-h-screen bg-background">
+              <Header />
+              <main className="container mx-auto px-4 py-8">
+                {children}
+              </main>
+            </div>
+            <Toaster richColors position="top-center" />
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

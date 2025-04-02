@@ -77,7 +77,7 @@ export default function ProfileDialog({ open, onOpenChange }: ProfileDialogProps
   if (isLoading) {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="bg-white">
+        <DialogContent>
           <DialogHeader>
             <DialogTitle>Loading Profile</DialogTitle>
           </DialogHeader>
@@ -92,12 +92,12 @@ export default function ProfileDialog({ open, onOpenChange }: ProfileDialogProps
   if (!profile) {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="bg-white">
+        <DialogContent>
           <DialogHeader>
             <DialogTitle>Profile</DialogTitle>
           </DialogHeader>
           <div className="flex items-center justify-center h-40">
-            <p>No profile data available</p>
+            <p className="text-muted-foreground">No profile data available</p>
           </div>
         </DialogContent>
       </Dialog>
@@ -106,7 +106,7 @@ export default function ProfileDialog({ open, onOpenChange }: ProfileDialogProps
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-white">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>Profile</DialogTitle>
         </DialogHeader>
@@ -153,11 +153,11 @@ export default function ProfileDialog({ open, onOpenChange }: ProfileDialogProps
                 <h3 className="text-xl font-semibold">
                   {profile.name || profile.username}
                 </h3>
-                <div className="flex items-center justify-center space-x-2 text-gray-600">
+                <div className="flex items-center justify-center space-x-2 text-muted-foreground">
                   <Mail className="h-4 w-4" />
                   <span className="text-sm">{profile.email}</span>
                 </div>
-                <div className="flex items-center justify-center space-x-2 text-gray-600">
+                <div className="flex items-center justify-center space-x-2 text-muted-foreground">
                   <User className="h-4 w-4" />
                   <span className="text-sm">@{profile.username}</span>
                 </div>
@@ -169,10 +169,10 @@ export default function ProfileDialog({ open, onOpenChange }: ProfileDialogProps
               <div className="w-full space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <Calendar className="h-4 w-4 text-gray-600" />
-                    <Label className="text-gray-600">Member since</Label>
+                    <Calendar className="h-4 w-4 text-muted-foreground" />
+                    <Label className="text-muted-foreground">Member since</Label>
                   </div>
-                  <span>
+                  <span className="text-muted-foreground">
                     {new Date(profile.createdAt).toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'long'
@@ -182,10 +182,10 @@ export default function ProfileDialog({ open, onOpenChange }: ProfileDialogProps
 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <Calendar className="h-4 w-4 text-gray-600" />
-                    <Label className="text-gray-600">Last updated</Label>
+                    <Calendar className="h-4 w-4 text-muted-foreground" />
+                    <Label className="text-muted-foreground">Last updated</Label>
                   </div>
-                  <span>
+                  <span className="text-muted-foreground">
                     {new Date(profile.updatedAt).toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'long'

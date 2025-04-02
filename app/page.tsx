@@ -1,11 +1,18 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Container, Typography, Box, Select, MenuItem, FormControl, IconButton } from "@mui/material";
-import FilterListIcon from '@mui/icons-material/FilterList';
+import { Container, Box } from "@mui/material";
+import { Filter } from "lucide-react";
 import ProductCards from "./products/product";
 import { getproducts, getCategories } from "./common/utill/fetch";
 import CreateProductFab from "./products/create products/create-product-fab";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface Product {
   id: number;
@@ -83,7 +90,7 @@ export default function Home() {
   if (loading) {
     return (
       <Container>
-        <Typography>Loading products...</Typography>
+        <div className="text-foreground">Loading products...</div>
       </Container>
     );
   }
@@ -91,7 +98,7 @@ export default function Home() {
   if (error) {
     return (
       <Container>
-        <Typography color="error">{error}</Typography>
+        <div className="text-destructive">{error}</div>
       </Container>
     );
   }
@@ -106,58 +113,34 @@ export default function Home() {
           mb: 4,
           position: 'relative'
         }}>
-          <FormControl sx={{ minWidth: 200, display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1 }}>
-            <FilterListIcon sx={{ color: '#4CAF50' }} />
+          <div className="flex items-center gap-2">
+            <Filter className="h-5 w-5 text-primary" />
             <Select
               value={selectedCategory}
-              onChange={(e) => {
-                console.log("Category selected:", e.target.value);
-                setSelectedCategory(e.target.value);
-              }}
-              sx={{ 
-                backgroundColor: 'white',
-                '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: '#4CAF50',
-                },
-                '&:hover .MuiOutlinedInput-notchedOutline': {
-                  borderColor: '#4CAF50',
-                },
-                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                  borderColor: '#4CAF50',
-                },
+              onValueChange={(value) => {
+                console.log("Category selected:", value);
+                setSelectedCategory(value);
               }}
             >
-              <MenuItem value="all">All Products</MenuItem>
-              {categories.map((category) => (
-                <MenuItem key={category.id} value={category.id.toString()}>
-                  {category.name}
-                </MenuItem>
-              ))}
+              <SelectTrigger className="w-[200px]">
+                <SelectValue placeholder="Select category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Products</SelectItem>
+                {categories.map((category) => (
+                  <SelectItem key={category.id} value={category.id.toString()}>
+                    {category.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
             </Select>
-          </FormControl>
-          <Typography 
-            variant="h3" 
-            component="h1" 
-            sx={{
-              fontWeight: 'bold',
-              color: '#1a1a1a',
-              position: 'absolute',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              '&::after': {
-                content: '""',
-                position: 'absolute',
-                bottom: '-10px',
-                left: '0',
-                width: '60px',
-                height: '3px',
-                // backgroundColor: '#4CAF50',
-                borderRadius: '2px',
-              }
-            }}
-          >
-            Our Products
-          </Typography>
+          </div>
+          <div className="absolute left-1/2 -translate-x-1/2">
+            <h1 className="text-4xl font-bold text-foreground relative pb-4">
+              Our Products
+              <span className="absolute bottom-0 left-0 w-[60px] h-[3px] bg-primary rounded-sm"></span>
+            </h1>
+          </div>
         </Box>
 
         <ProductCards products={filteredProducts} />

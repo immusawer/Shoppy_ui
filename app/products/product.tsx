@@ -1,123 +1,73 @@
 "use client";
 
 import React from "react";
-import { Card, CardContent, Typography, Grid, CardMedia, Box } from "@mui/material";
 import { Product, ProductCardsProps, getImageUrl } from "./productList";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ShoppingCart } from "lucide-react";
 
 const ProductCards: React.FC<ProductCardsProps> = ({ products }) => {
   console.log("Products array:", products);
 
   return (
-    <Grid container spacing={4}>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {products.map((product) => {
         const imageUrl = getImageUrl(product);
         console.log("Product image URL:", imageUrl);
         
         return (
-          <Grid item key={product.id} xs={12} sm={6} md={4}>
-            <Card
-              sx={{
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
-                "&:hover": { 
-                  boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
-                  transform: "translateY(-4px)",
-                },
-                transition: "all 0.3s ease-in-out",
-                borderRadius: "12px",
-                overflow: "hidden",
-                backgroundColor: "#1a1a1a",
-                color: "white",
-              }}
-            >
+          <Card key={product.id} className="group overflow-hidden transition-all duration-300 hover:shadow-lg">
+            <div className="relative aspect-square overflow-hidden">
               {imageUrl ? (
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={imageUrl}
+                <img
+                  src={imageUrl}
                   alt={product.name}
-                  sx={{ 
-                    objectFit: 'cover',
-                    borderBottom: "1px solid #333",
-                  }}
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
                     console.error(`Failed to load image: ${imageUrl}`);
                     const target = e.target as HTMLImageElement;
-                    target.src = '/placeholder.jpg'; // Fallback image
+                    target.src = '/placeholder.jpg';
                   }}
                 />
               ) : (
-                <Box 
-                  sx={{ 
-                    height: 200, 
-                    bgcolor: '#2a2a2a', 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center',
-                    borderBottom: "1px solid #333",
-                  }}
-                >
-                  <Typography variant="body2" color="text.secondary">
-                    No image available
-                  </Typography>
-                </Box>
+                <div className="flex h-full w-full items-center justify-center bg-muted">
+                  <span className="text-sm text-muted-foreground">No image available</span>
+                </div>
               )}
-              <CardContent sx={{ flexGrow: 1, p: 2 }}>
-                <Typography
-                  variant="caption"
-                  sx={{ 
-                    color: "#888",
-                    display: "block",
-                    mb: 1,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.5px",
-                  }}
-                >
+              <div className="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            </div>
+            
+            <CardHeader className="space-y-1">
+              <div className="flex items-center justify-between">
+                <Badge variant="secondary" className="text-xs">
                   {product.category?.name || "Uncategorized"}
-                </Typography>
-                <Typography
-                  gutterBottom
-                  variant="h6"
-                  component="div"
-                  sx={{ 
-                    fontWeight: "bold",
-                    color: "white",
-                    mb: 1,
-                  }}
-                >
-                  {product.name}
-                </Typography>
-                <Typography 
-                  variant="body2" 
-                  sx={{ 
-                    color: "#aaa",
-                    mb: 2,
-                    display: "-webkit-box",
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: "vertical",
-                    overflow: "hidden",
-                  }}
-                >
-                  {product.detail}
-                </Typography>
-                <Typography
-                  variant="h6"
-                  sx={{ 
-                    color: "#4CAF50",
-                    fontWeight: "bold",
-                    mt: "auto",
-                  }}
-                >
+                </Badge>
+                <span className="text-lg font-bold text-primary">
                   ${product.price.toFixed(2)}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
+                </span>
+              </div>
+              <h3 className="text-lg font-semibold leading-none tracking-tight">
+                {product.name}
+              </h3>
+            </CardHeader>
+            
+            <CardContent>
+              <p className="text-sm text-muted-foreground line-clamp-2">
+                {product.detail}
+              </p>
+            </CardContent>
+            
+            <CardFooter className="flex justify-between">
+              <Button variant="outline" size="sm" className="w-full">
+                <ShoppingCart className="mr-2 h-4 w-4" />
+                Add to Cart
+              </Button>
+            </CardFooter>
+          </Card>
         );
       })}
-    </Grid>
+    </div>
   );
 };
 

@@ -123,9 +123,9 @@ export default function Header() {
                     <Button 
                       variant="ghost" 
                       size="icon"
-                      className="relative h-12 w-12 rounded-full hover:bg-accent hover:text-accent-foreground"
+                      className="relative h-14 w-14 rounded-full hover:bg-accent hover:text-accent-foreground"
                     >
-                      <Avatar className="h-12 w-12">
+                      <Avatar className="h-14 w-14">
                         {userProfile?.profileImage ? (
                           <AvatarImage 
                             src={getProfileImageUrl(userProfile.profileImage)} 
@@ -136,7 +136,7 @@ export default function Header() {
                             }}
                           />
                         ) : (
-                          <AvatarFallback className="text-lg">
+                          <AvatarFallback className="text-xl">
                             {(userProfile?.name || userProfile?.username || 'U').charAt(0).toUpperCase()}
                           </AvatarFallback>
                         )}

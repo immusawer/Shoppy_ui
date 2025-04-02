@@ -21,12 +21,7 @@ import { AuthContext } from "../auth/auth-context";
 import { unauthenticated, routes } from "../common/constants/navigation";
 import logout from "../auth/logout";
 import { useContext } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import ProfileDialog from "../profile/profile";
 
 export default function Header() {
   const isAuthenticated = useContext(AuthContext);
@@ -35,6 +30,16 @@ export default function Header() {
   const [showProfile, setShowProfile] = useState(false);
 
   const pages = isAuthenticated ? routes : unauthenticated;
+
+  const handleProfileClick = () => {
+    console.log('Profile menu item clicked');
+    setShowProfile(true);
+  };
+
+  const handleProfileClose = (open: boolean) => {
+    console.log('Profile dialog state changed:', open);
+    setShowProfile(open);
+  };
 
   return (
     <>
@@ -103,7 +108,7 @@ export default function Header() {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="bg-slate-950 border-slate-800">
                     <DropdownMenuItem 
-                      onClick={() => setShowProfile(true)}
+                      onClick={handleProfileClick}
                       className="text-white hover:bg-slate-800 cursor-pointer"
                     >
                       <User className="mr-2 h-4 w-4" />
@@ -124,34 +129,7 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Profile Dialog */}
-      <Dialog open={showProfile} onOpenChange={setShowProfile}>
-        <DialogContent className="bg-slate-950/80 backdrop-blur-sm border-slate-800">
-          <DialogHeader>
-            <DialogTitle className="text-white">Profile</DialogTitle>
-          </DialogHeader>
-          <div className="flex flex-col items-center space-y-4">
-            <Avatar className="h-20 w-20">
-              <AvatarImage src="/avatars/01.png" alt="User avatar" />
-              <AvatarFallback className="bg-slate-800 text-white text-xl">U</AvatarFallback>
-            </Avatar>
-            <div className="text-center space-y-2">
-              <h3 className="text-lg font-semibold text-white">User Name</h3>
-              <p className="text-sm text-gray-300">user@example.com</p>
-            </div>
-            <div className="w-full space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-400">Member since</span>
-                <span className="text-white">January 2024</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-400">Orders</span>
-                <span className="text-white">0</span>
-              </div>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
+      <ProfileDialog open={showProfile} onOpenChange={handleProfileClose} />
     </>
   );
 }

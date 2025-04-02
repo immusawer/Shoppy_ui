@@ -13,17 +13,12 @@
         "app/auth/login/page": {
           "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5CImportant%5C%5CShop%20-%20Copy%5C%5Cui%5C%5Capp%5C%5Cauth%5C%5Cauthenticated.ts%22%2C%5B%7B%22id%22%3A%220085bb51516767565feadd9145e3f6e5d3993cead3%22%2C%22exportedName%22%3A%22default%22%7D%5D%5D%5D&__client_imported__=!",
           "async": false
-        },
-        "app/auth/signup/page": {
-          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5CImportant%5C%5CShop%20-%20Copy%5C%5Cui%5C%5Capp%5C%5Cauth%5C%5Cauthenticated.ts%22%2C%5B%7B%22id%22%3A%220085bb51516767565feadd9145e3f6e5d3993cead3%22%2C%22exportedName%22%3A%22default%22%7D%5D%5D%5D&__client_imported__=!",
-          "async": false
         }
       },
       "layer": {
         "app/page": "rsc",
         "app/_not-found/page": "rsc",
-        "app/auth/login/page": "rsc",
-        "app/auth/signup/page": "rsc"
+        "app/auth/login/page": "rsc"
       }
     },
     "00c61f4afce377ed7d25508e2f2976f3da986225c1": {
@@ -68,17 +63,6 @@
       },
       "layer": {
         "app/page": "action-browser"
-      }
-    },
-    "7f22a9a600f29a3a1a995bd063cfdc2b559630086c": {
-      "workers": {
-        "app/auth/signup/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5CImportant%5C%5CShop%20-%20Copy%5C%5Cui%5C%5Capp%5C%5Cauth%5C%5Csignup%5C%5Csignup.ts%22%2C%5B%7B%22id%22%3A%227f22a9a600f29a3a1a995bd063cfdc2b559630086c%22%2C%22exportedName%22%3A%22signup%22%7D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/auth/signup/page": "action-browser"
       }
     }
   },

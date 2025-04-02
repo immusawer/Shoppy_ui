@@ -12,6 +12,23 @@ export interface UserProfile {
   updatedAt: string;
 }
 
+export function getProfileImageUrl(imagePath: string | null): string {
+  if (!imagePath) return "/avatars/01.png";
+  
+  // If the path already includes the full URL, return it as is
+  if (imagePath.startsWith('http')) {
+    return imagePath;
+  }
+  
+  // If the path starts with /uploads, use it directly
+  if (imagePath.startsWith('/uploads')) {
+    return `${API_BASE_URL}${imagePath}`;
+  }
+  
+  // Otherwise, construct the full path
+  return `${API_BASE_URL}/uploads/profiles/${imagePath}`;
+}
+
 export async function fetchUserProfile(): Promise<UserProfile> {
   try {
     const token = localStorage.getItem('access_token');
@@ -38,6 +55,7 @@ export async function fetchUserProfile(): Promise<UserProfile> {
     console.log('Email:', response.data.email);
     console.log('Name:', response.data.name);
     console.log('Profile Image Path:', response.data.profileImage);
+    console.log('Full Image URL:', getProfileImageUrl(response.data.profileImage));
     console.log('Created At:', response.data.createdAt);
     console.log('Updated At:', response.data.updatedAt);
     console.log('========================');

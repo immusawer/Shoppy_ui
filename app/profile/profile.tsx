@@ -111,21 +111,26 @@ export default function ProfileDialog({ open, onOpenChange }: ProfileDialogProps
         <Card className="bg-slate-900 border-slate-800">
           <CardContent className="pt-6">
             <div className="flex flex-col items-center space-y-6">
+              {/* Debug Info */}
+              <div className="hidden">
+                <p>Debug Info:</p>
+                <p>Profile Image Path: {profile.profileImage}</p>
+                <p>Full Image URL: {profile.profileImage ? `http://localhost:3001${profile.profileImage}` : 'No image'}</p>
+                <p>Full Profile Data: {JSON.stringify(profile, null, 2)}</p>
+              </div>
+
               {/* Avatar Section */}
               <div className="relative">
                 <Avatar className="h-24 w-24">
                   <AvatarImage 
-                    src={profile.profileImage 
-                      ? profile.profileImage.startsWith('data:') || profile.profileImage.startsWith('blob:')
-                        ? profile.profileImage
-                        : `http://localhost:3001${profile.profileImage}`
-                      : "/avatars/01.png"} 
+                    src={`http://localhost:3001${profile.profileImage}`}
                     alt={`${profile.name || profile.username}'s avatar`} 
                     onError={(e) => {
                       console.error('=== Avatar Image Error ===');
                       console.error('Error loading profile image:', e);
                       console.error('Failed image URL:', e.currentTarget.src);
                       console.error('Profile Image Path:', profile.profileImage);
+                      console.error('Full Profile Data:', profile);
                       console.error('========================');
                       e.currentTarget.src = "/avatars/01.png";
                     }}

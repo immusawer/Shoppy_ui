@@ -11,6 +11,16 @@ exports.id = "vendor-chunks/es-object-atoms";
 exports.ids = ["vendor-chunks/es-object-atoms"];
 exports.modules = {
 
+/***/ "(action-browser)/./node_modules/es-object-atoms/index.js":
+/*!***********************************************!*\
+  !*** ./node_modules/es-object-atoms/index.js ***!
+  \***********************************************/
+/***/ ((module) => {
+
+eval("\n\n/** @type {import('.')} */\nmodule.exports = Object;\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFjdGlvbi1icm93c2VyKS8uL25vZGVfbW9kdWxlcy9lcy1vYmplY3QtYXRvbXMvaW5kZXguanMiLCJtYXBwaW5ncyI6IkFBQWE7O0FBRWIsV0FBVyxhQUFhO0FBQ3hCIiwic291cmNlcyI6WyJEOlxcUHJvamVjdHNcXEltcG9ydGFudFxcU2hvcCAtIENvcHlcXHVpXFxub2RlX21vZHVsZXNcXGVzLW9iamVjdC1hdG9tc1xcaW5kZXguanMiXSwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBzdHJpY3QnO1xuXG4vKiogQHR5cGUge2ltcG9ydCgnLicpfSAqL1xubW9kdWxlLmV4cG9ydHMgPSBPYmplY3Q7XG4iXSwibmFtZXMiOltdLCJpZ25vcmVMaXN0IjpbMF0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(action-browser)/./node_modules/es-object-atoms/index.js\n");
+
+/***/ }),
+
 /***/ "(ssr)/./node_modules/es-object-atoms/index.js":
 /*!***********************************************!*\
   !*** ./node_modules/es-object-atoms/index.js ***!

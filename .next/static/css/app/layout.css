@@ -251,6 +251,9 @@
     container-type: inline-size;
     container-name: card-header;
   }
+  .\@container {
+    container-type: inline-size;
+  }
   .pointer-events-none {
     pointer-events: none;
   }
@@ -677,6 +680,9 @@
   }
   .shrink-0 {
     flex-shrink: 0;
+  }
+  .flex-grow {
+    flex-grow: 1;
   }
   .grow {
     flex-grow: 1;
@@ -1469,6 +1475,9 @@
   .select-none {
     -webkit-user-select: none;
     user-select: none;
+  }
+  .\[n5\:�\1 ��0\] {
+    n5: ���0;
   }
   .\[xlink\:href\] {
     xlink: href;

@@ -12,12 +12,7 @@ export function middleware(request: NextRequest) {
   // Protected routes that require authentication
   const protectedRoutes = ["/", "/products", "/profile"]; // Add all your protected routes here
 
-  // If accessing root path, redirect to login if not authenticated
-  if (pathname === "/" && !token) {
-    return NextResponse.redirect(new URL("/auth/login", request.url));
-  }
-
-  // If accessing any protected route without token, redirect to login
+  // If accessing a protected route without token, redirect to login
   if (protectedRoutes.includes(pathname) && !token) {
     return NextResponse.redirect(new URL("/auth/login", request.url));
   }

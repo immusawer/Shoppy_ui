@@ -135,11 +135,16 @@ export default function Home() {
               </SelectContent>
             </Select>
           </div>
-          <div className="absolute left-1/2 -translate-x-1/2">
-            <h1 className="text-4xl font-bold text-foreground relative pb-4">
-              Our Products
-              <span className="absolute bottom-0 left-0 w-[60px] h-[3px] bg-primary rounded-sm"></span>
+          <div className="absolute left-1/2 -translate-x-1/2 text-center">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground relative pb-4 group">
+              <span className="inline-block transition-transform duration-300 group-hover:scale-105">
+                Our Products
+              </span>
+              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[60px] h-[3px] bg-primary rounded-sm transform origin-left transition-all duration-300 group-hover:w-[120px] group-hover:bg-gradient-to-r from-primary to-primary/50"></span>
             </h1>
+            <p className="text-muted-foreground mt-2 text-sm md:text-base transition-opacity duration-300 group-hover:opacity-100">
+              Discover our amazing collection
+            </p>
           </div>
         </Box>
 

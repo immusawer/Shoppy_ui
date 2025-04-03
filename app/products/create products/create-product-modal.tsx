@@ -117,10 +117,7 @@ export default function CreateProductModal({
         <div className="flex flex-col items-center">
           <DialogTitle className="text-center mb-4">Create New Product</DialogTitle>
           <Card className="w-full">
-            <CardHeader className="text-center pb-2">
-              <CardTitle className="text-xl">Create Product</CardTitle>
-              <CardDescription className="text-sm text-gray-500">Add a new product to your store.</CardDescription>
-            </CardHeader>
+      
             <CardContent>
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div className="grid w-full items-center gap-4">

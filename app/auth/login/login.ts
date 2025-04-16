@@ -1,7 +1,7 @@
 // app/login/login.service.ts
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { API_URL } from "@/app/products/productList";
+const API_URL = process.env.NEXT_PUBLIC_API_URL!;
 
 // app/login/login.service.ts
 import api from '@/lib/api';

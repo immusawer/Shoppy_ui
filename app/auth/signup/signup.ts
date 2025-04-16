@@ -1,7 +1,7 @@
 "use server";
 
 import axios from "axios";
-import { API_URL } from "@/app/products/productList";
+const API_URL = process.env.NEXT_PUBLIC_API_URL!;
 
 interface SignupResponse {
   success: boolean;

@@ -2,7 +2,7 @@
 import { cookies } from "next/headers";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { API_URL } from "@/app/products/productList";
+const API_URL = process.env.NEXT_PUBLIC_API_URL!;
 
 // Helper function to get token
 async function getToken() {

@@ -10,7 +10,10 @@ interface SignupResponse {
 
 export const signup = async (formData: FormData): Promise<SignupResponse> => {
   try {
-    console.log("Attempting to register user with email:", formData.get('email'));
+    
+    const rawEmail = formData.get('email')?.toString() || '';
+    formData.set('email', rawEmail.toLowerCase()); // ✅ normalize before sending
+    console.log("Attempting to register user with email:", formData.get('rawEmail'));
     const response = await axios.post(`${API_URL}/users/register`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',

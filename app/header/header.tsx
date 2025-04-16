@@ -25,19 +25,36 @@ import ProfileDialog from "../profile/profile";
 import { fetchUserProfile, getProfileImageUrl } from "../profile/client_profile";
 import type { UserProfile } from "../profile/client_profile";
 import { ThemeToggle } from "../components/theme-toggle";
+import Cookies from 'js-cookie';
 
 export default function Header() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const pages = isAuthenticated ? routes : unauthenticated;
 
   useEffect(() => {
+    const checkAuth = () => {
+      const token = Cookies.get('access_token');
+      setIsAuthenticated(!!token);
+      setIsLoading(false);
+    };
+
+    checkAuth();
+    const interval = setInterval(checkAuth, 1000);
+
+    return () => clearInterval(interval);
+  }, [setIsAuthenticated]);
+
+  useEffect(() => {
     if (isAuthenticated) {
       loadUserProfile();
+    } else {
+      setUserProfile(null);
     }
   }, [isAuthenticated]);
 
@@ -47,6 +64,7 @@ export default function Header() {
       setUserProfile(profile);
     } catch (error) {
       console.error('Failed to load user profile:', error);
+      setUserProfile(null);
     }
   };
 
@@ -59,6 +77,10 @@ export default function Header() {
     console.log('Profile dialog state changed:', open);
     setShowProfile(open);
   };
+
+  if (isLoading) {
+    return null; // Don't render anything while checking auth
+  }
 
   return (
     <>

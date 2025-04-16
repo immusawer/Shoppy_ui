@@ -8,10 +8,11 @@ interface ProviderProps {
   children: ReactElement[];
   authenticated: boolean;
 }
+
 export default function Provider({ children, authenticated }: ProviderProps) {
   return (
     <ThemeProvider theme={darktheme}>
-      <AuthContext.Provider value={authenticated}>
+      <AuthContext.Provider value={{ isAuthenticated: authenticated, setIsAuthenticated: () => {} }}>
         {children}
       </AuthContext.Provider>
     </ThemeProvider>

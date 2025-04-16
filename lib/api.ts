@@ -1,8 +1,9 @@
 // lib/api.ts
 import axios from 'axios';
 
-const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+// Create axios instance
+export const api = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001',
   withCredentials: true, // This is crucial for cookies
 });
 
@@ -17,8 +18,12 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Handle unauthorized access
-      window.location.href = '/login';
+      // Clear any existing tokens
+      localStorage.removeItem('access_token');
+      document.cookie = 'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      
+      // Redirect to login page
+      window.location.href = '/auth/login';
     }
     return Promise.reject(error);
   }

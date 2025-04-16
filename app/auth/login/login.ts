@@ -15,26 +15,26 @@ interface LoginResponse {
 
 export const loginUser = async (credentials: { email: string; password: string }): Promise<LoginResponse> => {
   try {
-    const response = await axios.post(`${API_URL}/auth/login`, credentials);
-    console.log('Server response:', response.data); // Debug log
-    
-    // Store the token in both localStorage and cookies
+    // 🔠 Force email to lowercase
+    const normalizedCredentials = {
+      email: credentials.email.toLowerCase(),
+      password: credentials.password,
+    };
+
+    const response = await axios.post(`${API_URL}/auth/login`, normalizedCredentials);
+    console.log('Server response:', response.data);
+
     if (response.data.access_token) {
-      // Store in localStorage
       localStorage.setItem('access_token', response.data.access_token);
-      
-      // Store in cookies
       Cookies.set('access_token', response.data.access_token, {
-        expires: 1, // 1 day
+        expires: 1,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax'
       });
-      
-      // Set the default Authorization header for future requests
+
       axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;
     }
 
-    // Return success if we have a user and token
     if (response.data.user && response.data.access_token) {
       return {
         success: true,
@@ -48,13 +48,14 @@ export const loginUser = async (credentials: { email: string; password: string }
       message: response.data.message || 'Login failed'
     };
   } catch (error: any) {
-    console.error('Login error:', error.response?.data); // Debug log
+    console.error('Login error:', error.response?.data);
     return {
       success: false,
       message: error.response?.data?.message || 'Login failed',
     };
   }
 };
+
 
 // Add auth check function
 export const checkAuth = async () => {

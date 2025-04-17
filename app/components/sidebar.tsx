@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useAuth } from "../auth/auth-context";
+import { useAuth } from "../(auth)/auth-context";
 import { routes } from "../common/constants/navigation";
 import { Button } from "@/components/ui/button";
 import { Home, ShoppingBasket, PlusCircle, Settings, Users, Menu, X } from "lucide-react";

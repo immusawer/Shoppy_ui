@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { checkAuth } from "../auth/login/login";
+import { checkAuth } from "../(auth)/login/login";
 
 export default function HomePage() {
   const router = useRouter();
@@ -14,13 +14,13 @@ export default function HomePage() {
       try {
         const userData = await checkAuth();
         if (!userData) {
-          router.replace("/auth/login");
+          router.replace("/login");
         } else {
           setUser(userData);
         }
       } catch (error) {
         console.error('Auth check failed:', error);
-        router.replace("/auth/login");
+        router.replace("/login");
       } finally {
         setIsLoading(false);
       }

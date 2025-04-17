@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import Header from "./components/header";
-import { AuthProvider } from "./auth/auth-context";
+import { AuthProvider } from "./(auth)/auth-context";
 import { ThemeProvider } from "./providers/theme-provider";
 import Sidebar from "./components/sidebar";
 import Footer from "./components/footer";

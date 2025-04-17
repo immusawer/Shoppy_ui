@@ -2,7 +2,7 @@
 import { ThemeProvider } from "@mui/material";
 import darktheme from "./dark.theme";
 import { ReactElement } from "react";
-import { AuthContext } from "./auth/auth-context";
+import { AuthContext } from "./(auth)/auth-context";
 
 interface ProviderProps {
   children: ReactElement[];

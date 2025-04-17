@@ -18,9 +18,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useAuth } from "../auth/auth-context";
+import { useAuth } from "../(auth)/auth-context";
 import { unauthenticated, routes } from "../common/constants/navigation";
-import logout from "../auth/logout";
+import logout from "../(auth)/logout";
 import ProfileDialog from "../profile/profile";
 import { fetchUserProfile, getProfileImageUrl } from "../profile/client_profile";
 import type { UserProfile } from "../profile/client_profile";
@@ -80,7 +80,7 @@ export default function Header() {
 
   const handleLogout = () => {
     logout();
-    router.push("auth/login");
+    router.push("login");
   };
 
   if (isLoading) {

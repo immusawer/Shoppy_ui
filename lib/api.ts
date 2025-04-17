@@ -24,7 +24,7 @@ api.interceptors.response.use(
       document.cookie = 'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
       
       // Redirect to login page
-      window.location.href = '/auth/login';
+      window.location.href = '/login';
     }
     return Promise.reject(error);
   }

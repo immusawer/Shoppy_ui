@@ -1,11 +1,11 @@
 export const unauthenticated = [
   {
     title: "Login",
-    path: "/auth/login",
+    path: "/login",
   },
   {
     title: "Signup",
-    path: "/auth/signup",
+    path: "/signup",
   },
 ];
 
